@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pengra Terminal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'search/dashboard.css' %}" />
+    <script src="{% static 'search/search.js' %}"></script>
+</head>
+
+<body onkeydown="document.getElementById('search').focus()" onload="grabResults(document.getElementById('search'), event)">
+    <div class="container">
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+                Pengra Terminal
+            </a>
+            <input id="search" class="form-control form-control-dark w-100" type="text" placeholder="Search or Command"
+                autofocus autocomplete="off" aria-label="Search" name="search" onkeyup="onInputUpdate(this, event)">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">Search</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <!-- News Stories -->
+        <div class="container">
+            <div class="row" id="news">
+            </div>
+        </div>
+        <hr />
+        <!-- Search Results -->
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9" id="results">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5>
+                                Pengra Terminal
+                            </h5>
+
+                            <a href="/" target="_blank">https://pengra.io/
+                                <span class="dropdown show">
+                                    
+                                    <a class="dropdown-toggle" href=""
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item disabled" href="#">Edit</a>
+                                        <a class="dropdown-item disabled" href="#">Remove</a>
+                                    </div>
+                                </span>
+                            </a>
+                            <p>
+                                A custom search engine I wrote over spring break 2019.
+                                Typically works best when you run it on a local computer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card" style="display: none" id="search_details">
+                                <div class="card-body">
+                                    <h5 class="card-title">Search Modifiers</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        "<span id="search_copy"></span>" is a ...
+                                    </h6>
+                                    <p class="card-text">
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="is_news"
+                                                    onclick="onInputUpdate(document.getElementById('search'), event)">
+                                                News Query</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="is_academic"
+                                                    onclick="onInputUpdate(document.getElementById('search'), event)">
+                                                Academic Query</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="is_scholarly"
+                                                    onclick="onInputUpdate(document.getElementById('search'), event)">
+                                                Scholarly Query</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="is_programming"
+                                                    onclick="onInputUpdate(document.getElementById('search'), event)">
+                                                Programming Query</label>
+                                        </div>
+                                        <!-- <div class="checkbox">
+                                            <label><input type="checkbox" id="is_cs"
+                                                    onclick="onInputUpdate(document.getElementById('search'), event)">
+                                                CS Query</label>
+                                        </div> -->
+                                    </p>
+                                    <a href="#" class="card-link">Mark Query</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-10">
+                    <h5>Welcome to Python.org
+                        <img src="https://google.com/favicon.ico" height="16px">
+                        <img src="https://bing.com/favicon.ico" height="16px">
+                        <img src="https://arxiv.org/favicon.ico" height="16px">
+                        <img src="https://wikipedia.org/favicon.ico" height="16px">
+                        <img src="https://stackoverflow.com/favicon.ico" height="16px">
+                        <img src="https://4chan.org/favicon.ico" height="16px">
+                    </h5>
+
+                    <span class="url">https://www.python.org/</span>
+                    <p>
+                        The official home of the Python Programming Language.
+                    </p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <h5>Python (programming language) - Wikipedia</h5>
+                    <span class="url">https://en.wikipedia.org/wiki/Python_(programming_language)</span>
+                    <p>
+                        Python is an interpreted, high-level, general-purpose programming language. Created by Guido van
+                        Rossum and first released in 1991, Python has a design ...
+                    </p>
+                </div>
+            </div>
+
+        </div> -->
+    </main>
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">
+                Results powered by <a href="https://duckduckgo.com">DuckDuckGo</a>. News powered by
+                <a href="https://newsapi.org">News API</a>. Academic results powered by <a
+                    href="https://arxiv.org">Arxiv</a> and <a href="https://www.wikipedia.org">Wikipedia</a>. Math
+                results powered by <a href="http://mathworld.wolfram.com">Wolfram Mathworld</a>.
+            </span>
+        </div>
+    </footer>
+</body>
+
+
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous">
+</script>
+</script>
+
+</html>
