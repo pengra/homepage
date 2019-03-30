@@ -20,4 +20,5 @@ class ResultSerializer(serializers.ModelSerializer):
             'duckduckgo',
             'image',
             'chan',
+            'sx',
         )

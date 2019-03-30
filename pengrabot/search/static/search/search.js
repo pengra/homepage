@@ -21,6 +21,7 @@ const grabResults = (box, event) => {
   const force = event.keyCode === 13 ? '&force=1' : ''
   const is_academic = document.getElementById('is_academic').checked ? '&academic=1' : ''
   const is_scholarly = document.getElementById('is_scholarly').checked ? '&scholarly=1' : ''
+  const is_programming = document.getElementById('is_programming').checked ? '&programming=1' : ''
   
   if (value === '/hackernews') {
     clearResults()
@@ -81,13 +82,10 @@ const grabResults = (box, event) => {
   } else if (value.slice(0, 1) === '/') {
     showCommands()
   } else if (value.length > 0) {
-    if (value.includes('java') || value.includes('C++') || value.includes('django') || value.includes('python')) {
-      document.getElementById('is_programming').checked = true
-    }
     if (force) {
       showThinking()
     }
-    fetch('/search/?query=' + value + force + is_academic + is_scholarly)
+    fetch('/search/?query=' + value + force + is_academic + is_scholarly + is_programming)
       .then((e) => e.json())
       .then((e) => {
         clearResults()
@@ -205,7 +203,9 @@ const addResult = (id, title, tags, url, preview) => {
   } else if (tags.uw) {
     result.style.borderLeft = "3px solid #4b2e83"
   } else if (tags.chan) {
-    result.style.borderLeft = "3px solid #800000"
+    result.style.borderLeft = "3px solid #911"
+  } else if (tags.sx) {
+    result.style.borderLeft = "3px solid #366FB3"
   }
 
   // <div class="col-md-10"></div>
@@ -279,8 +279,11 @@ const addResult = (id, title, tags, url, preview) => {
 
   // <p>blurb</p>
   const blurb = document.createElement('p')
-  blurb.appendChild(document.createTextNode(preview))
-  // blurb.innerHTML = preview
+  if (tags.chan) {
+    blurb.innerHTML = preview
+  } else {
+    blurb.appendChild(document.createTextNode(preview))
+  }
 
   leftSide.appendChild(resultTitle)
   leftSide.appendChild(link)

@@ -36,11 +36,11 @@ class Command(BaseCommand):
             # author = article['author']
             image_url = article['urlToImage']
             image = None
-            if image_url:
-                try:
-                    image = File(requests.get(image_url, stream=True).raw)
-                except requests.exceptions.ConnectionError:
-                    pass
+            # if image_url:
+            #     try:
+            #         image = File(requests.get(image_url, stream=True).raw)
+            #     except requests.exceptions.ConnectionError:
+            #         pass
             title = article['title']
             blurb = article['description']
             if not blurb:

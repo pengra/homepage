@@ -60,6 +60,13 @@ class Command(BaseCommand):
                 'unacademy.org' in netloc or
                 'udemy.com' in netloc
             )
+            result.sx = (
+                'stackoverflow.com' in netloc or
+                'stackexchange.com' in netloc or
+                'superuser.com' in netloc or
+                'askubuntu.com' in netloc or
+                'serverfault.com' in netloc
+            )
             result.save()
             query.results.add(result)
             query.save()

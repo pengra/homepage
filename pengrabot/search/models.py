@@ -52,6 +52,9 @@ class Result(models.Model):
     semanticscholar = models.BooleanField(default=False) # semanticscholar.org
     hackernews = models.BooleanField(default=False)
     uw = models.BooleanField(default=False)
+
+    sx = models.BooleanField(default=False) # from stackoverflow or stackexchange
+
     personal = models.BooleanField(default=False) # added manually
 
     edu = models.BooleanField(default=False)

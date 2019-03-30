@@ -28,8 +28,9 @@ class SearchAPI(ListAPIView):
         news = self.request.query_params.get('news', '').lower() # if user typed "/news <query>"
 
         
-        is_scholarly = bool(self.request.query_params.get('scholarly', '').lower()) # is this query scholarly? overrides academic flag
-        is_academic = bool(self.request.query_params.get('academic', '').lower()) # is this query academic?
+        is_scholarly = bool(self.request.query_params.get('scholarly', '')) # is this query scholarly? overrides academic flag
+        is_academic = bool(self.request.query_params.get('academic', '')) # is this query academic?
+        is_programming = bool(self.request.query_params.get('programming', '')) # is this a programming query?
 
         results = models.Result.objects.none()
 
@@ -78,7 +79,10 @@ class SearchAPI(ListAPIView):
                     results |= suggested.results.all()
 
         order = ['-personal']
+        generic = ['-clicks', 'grabbed']
 
+        if is_programming:
+            order.append('-sx')    
         if is_scholarly:
             order.append('-arxiv')
             order.append('-edu')
@@ -86,10 +90,12 @@ class SearchAPI(ListAPIView):
             order.append('-wiki')
             order.append('-edu')
             order.append('-arxiv')
+        elif wg:
+            generic.reverse()
         else:
             order.append('-duckduckgo')
 
-        return results.order_by(*order, '-clicks', 'grabbed')
+        return results.order_by(*order, *generic)
 
 
 def search_redirect(request, result_id):
