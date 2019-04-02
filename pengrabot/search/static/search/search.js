@@ -85,7 +85,7 @@ const grabResults = (box, event) => {
     if (force) {
       showThinking()
     }
-    fetch('/search/?query=' + value + force + is_academic + is_scholarly + is_programming)
+    fetch('/search/?query=' + encodeURIComponent(value) + force + is_academic + is_scholarly + is_programming)
       .then((e) => e.json())
       .then((e) => {
         clearResults()
@@ -206,6 +206,8 @@ const addResult = (id, title, tags, url, preview) => {
     result.style.borderLeft = "3px solid #911"
   } else if (tags.sx) {
     result.style.borderLeft = "3px solid #366FB3"
+  } else if (tags.reddit) {
+    result.style.borderLeft = "3px solid #FF5700"
   }
 
   // <div class="col-md-10"></div>
@@ -270,6 +272,14 @@ const addResult = (id, title, tags, url, preview) => {
   const idStat = document.createElement('div')
   idStat.setAttribute('class', 'dropdown-item disabled')
   idStat.appendChild(document.createTextNode('id: ' + id))
+  
+  const cardReason = document.createElement("span")
+  cardReason.setAttribute("class", "text-muted")
+  if (tags.queries && tags.queries.length > 0) {
+    cardReason.appendChild(document.createTextNode("Suggested Queries: " + tags.queries.filter(word => word.startsWith(
+      document.getElementById("search").value.toLowerCase().trim()
+    )).slice(0, 5).join(", ")))
+  }
 
   dropdownMenu.appendChild(editButton)
   dropdownMenu.appendChild(removeButton)
@@ -291,13 +301,19 @@ const addResult = (id, title, tags, url, preview) => {
     leftSide.appendChild(document.createTextNode(" "))
     leftSide.appendChild(linkMenu)
   }
+  
+  blurb.appendChild(document.createElement('br'))
+  blurb.appendChild(cardReason)
+  
   leftSide.appendChild(blurb)
+
   if (tags.image) {
     const image = document.createElement('img')
     image.src = tags.image
     image.setAttribute('class', 'img-thumbnail')
     rightSide.appendChild(image)
   }
+  
   result.appendChild(leftSide)
   result.appendChild(rightSide)
   document.getElementById('results').appendChild(result)

@@ -1,0 +1,1 @@
+At its core is an interpreter for Emacs Lisp, a dialect of the Lisp programming language with extensions to support text editing. Emacs 25.1 has a wide variety of new features, including: âOur mission is to preserve, protect and promote the freedom to use, study, copy, modify, and redistribute computer software, and to defend the rights of Free Software users.â JOIN THE FSF

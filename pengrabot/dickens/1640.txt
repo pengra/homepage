@@ -1,0 +1,1 @@
+Return a string where "Microsoft" is replaced with "W3Schools": More "Try it Yourself" examples below. This method does not change the original string. Your message has been sent to W3Schools.

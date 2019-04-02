@@ -36,11 +36,7 @@ class Command(BaseCommand):
             # author = article['author']
             image_url = article['urlToImage']
             image = None
-            # if image_url:
-            #     try:
-            #         image = File(requests.get(image_url, stream=True).raw)
-            #     except requests.exceptions.ConnectionError:
-            #         pass
+            
             title = article['title']
             blurb = article['description']
             if not blurb:
@@ -50,13 +46,24 @@ class Command(BaseCommand):
             result = Result.objects.get_or_create(
                 url=url,
             )[0]
+            
+            print(title)
+            
             result.title = title
             result.blurb = blurb
             result.news = True
-            if image:
-                try:
-                    result.image.save(image_url.split('/')[-1], image)
-                except:
-                    result.image.save(str(int(time.time())) + ".jpg", image)
             result.save()
+            
+            if image_url:
+                try:
+                    image = File(requests.get(image_url, stream=True).raw)
+                    result.image.save(str(int(time.time())) + ".jpg", image)
+                    result.save()
+                except requests.exceptions.ConnectionError:
+                    print("Error:", image_url)
+
             query.results.add(result)
+
+            queries = [Query.objects.get_or_create(query=word)[0] for word in "".join([_ for _ in title.lower() if _.isalnum() or _.isspace()]).split(' ') if word]
+            for q in queries:
+                q.results.add(result)

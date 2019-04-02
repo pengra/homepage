@@ -1,0 +1,1 @@
+Getting Started Packages RStudio Best Practices Databases Advanced Other Resources There are two options for connecting to a PostgreSQL database: There are six settings needed to make a connection:

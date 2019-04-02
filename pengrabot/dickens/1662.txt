@@ -1,0 +1,1 @@
+Split a string into an array of substrings: More "Try it Yourself" examples below. The split() method is used to split a string into an array of substrings, and  returns the new array. Omit the separator parameter: Separate each character, including white-space: Use the limit parameter: Use a letter as a separator: Your message has been sent to W3Schools.

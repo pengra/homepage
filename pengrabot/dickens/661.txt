@@ -1,0 +1,1 @@
+The big white box above is the FSM designer.  Here's how to use it: This was made in HTML5 and JavaScript using the canvas element.

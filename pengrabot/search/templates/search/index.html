@@ -10,7 +10,8 @@
     <script src="{% static 'search/search.js' %}"></script>
 </head>
 
-<body onkeydown="document.getElementById('search').focus()" onload="grabResults(document.getElementById('search'), event)">
+<body onkeydown="document.getElementById('search').focus()"
+    onload="grabResults(document.getElementById('search'), event)">
     <div class="container">
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
@@ -46,9 +47,9 @@
 
                             <a href="/" target="_blank">https://pengra.io/
                                 <span class="dropdown show">
-                                    
-                                    <a class="dropdown-toggle" href=""
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                    <a class="dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
                                     </a>
 
                                     <div class="dropdown-menu">
@@ -58,9 +59,11 @@
                                 </span>
                             </a>
                             <p>
+
                                 A custom search engine I wrote over spring break 2019.
                                 Typically works best when you run it on a local computer.
                             </p>
+                            <span class="text-muted">Query: pengra</span>
                         </div>
                     </div>
                 </div>
@@ -142,10 +145,14 @@
     <footer class="footer mt-auto py-3">
         <div class="container">
             <span class="text-muted">
-                Results powered by <a href="https://duckduckgo.com">DuckDuckGo</a>. News powered by
-                <a href="https://newsapi.org">News API</a>. Academic results powered by <a
-                    href="https://arxiv.org">Arxiv</a> and <a href="https://www.wikipedia.org">Wikipedia</a>. Math
-                results powered by <a href="http://mathworld.wolfram.com">Wolfram Mathworld</a>.
+                Thanks to:
+                <a href="https://duckduckgo.com">DuckDuckGo</a> | 
+                <a href="https://newsapi.org">NewsAPI</a> | 
+                <a href="https://news.ycombinator.com">Hackernews</a> |
+                <a href="https://reddit.com/r/programming">Reddit</a> |
+                <a href="https://arxiv.org">Arxiv</a> |
+                <a href="https://www.wikipedia.org">Wikipedia</a> |
+                <a href="https://unsplash.com/">Unsplash</a>
             </span>
         </div>
     </footer>

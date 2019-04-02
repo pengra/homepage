@@ -1,0 +1,1 @@
+Convert the string to lowercase letters: The toLowerCase() method converts a string to lowercase letters. Your message has been sent to W3Schools.

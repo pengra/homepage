@@ -1,0 +1,1 @@
+  There are several modes which wallets can operate in. They have an inverse relationship with regards to trustlessness and computational requirements.

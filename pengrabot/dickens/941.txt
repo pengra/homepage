@@ -1,0 +1,1 @@
+Bisection method False position method Newton method f(x),f'(x) Newton method f(x) Halley's method To the top of this page

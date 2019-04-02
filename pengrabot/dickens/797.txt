@@ -1,0 +1,1 @@
+This method returns the calling string value converted to lowercase. Its syntax is as follows − Returns the calling string value converted to lowercase. Try the following example. © Copyright 2019. All Rights Reserved.

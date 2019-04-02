@@ -29,13 +29,14 @@ class Command(BaseCommand):
                 title = thread.get('sub', "/wg/ thread {}".format(no))
                 blurb = thread.get('com', "/wg/ thread {}".format(no))
                 url = "https://boards.4chan.org/{board}/thread/{no}".format(board=board, no=no)
-                result = Result.objects.get_or_create(
+                result, created = Result.objects.get_or_create(
                     url=url
-                )[0]
+                )
                 result.title = title
                 result.url = url
                 result.blurb = blurb
-                result.image.save("{}s.jpg".format(tim), File(requests.get("https://i.4cdn.org/{board}/{tim}s.jpg".format(board=board, tim=tim), stream=True).raw))
+                if created:
+                    result.image.save("{}s.jpg".format(tim), File(requests.get("https://i.4cdn.org/{board}/{tim}s.jpg".format(board=board, tim=tim), stream=True).raw))
                 result.chan = True
                 result.save()
                 

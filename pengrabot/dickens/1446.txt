@@ -1,0 +1,1 @@
+ A WORD consists of a sequence of non-blank characters, separated with white space.  An empty line is also considered to be a word and a WORD. Screen movement commands

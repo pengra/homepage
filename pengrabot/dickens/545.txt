@@ -1,0 +1,1 @@
+This page contains some examples of what JavaScript can do. JavaScript accepts both double and single quotes: Changing the style of an HTML element, is a variant of changing an HTML  attribute: Your message has been sent to W3Schools.

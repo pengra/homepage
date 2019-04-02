@@ -1,0 +1,1 @@
+An information security "vulnerability" is a mistake in software that can be directly used by a hacker to gain access to a system or network. An information security exposure is a mistake in software that allows access to information or capabilities that can be used by a hacker as a stepping-stone into a system or network.

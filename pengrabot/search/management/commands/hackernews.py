@@ -10,8 +10,6 @@ class Command(BaseCommand):
     _details_endpoint = "https://hacker-news.firebaseio.com/v0/item/{story_id}.json"
 
     def handle(self, *args, **kwargs):
-        query = Query.objects.get_or_create(query='!hackernews')[0] # A custom command
-
         print("Grabbing stories ...", end=' ')
         top_story_ids = requests.get(
             self._topstories_endpoint,
@@ -20,6 +18,7 @@ class Command(BaseCommand):
         print(len(top_story_ids), "stories found.")
 
         for story_id in top_story_ids[:50]:
+            print("Grabbing story id:", story_id)
             story = requests.get(
                 self._details_endpoint.format(story_id=story_id),
                 headers={'User-Agent':'Pengrabot'}
@@ -34,6 +33,9 @@ class Command(BaseCommand):
             except KeyError:
                 continue
             
+            queries = [Query.objects.get_or_create(query=word)[0] for word in "".join([_ for _ in title.lower() if _.isalnum() or _.isspace()]).split(' ') if word]
+            queries.append(Query.objects.get_or_create(query=title.lower())[0])
+
             blurb = "Hackernews Post by {by} - {score} points - {comments} comments".format(by=author, score=score, comments=comments)
 
             result = Result.objects.get_or_create(
@@ -45,7 +47,9 @@ class Command(BaseCommand):
             result.hackernews = True
             result.save()
 
-            query.results.add(result)
+            for query in queries:
+                query.results.add(result)
+                query.save()
 
             
 

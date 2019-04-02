@@ -1,0 +1,1 @@
+This blog makes use of third party services that track user information. These services may be placing and reading cookies on your browser in order to serve ads or analyze website statistics. These services may also be using web beacons to collect information. If needed, cookies can usually be managed or disabled through the privacy settings in your web browser.

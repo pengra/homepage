@@ -1,0 +1,1 @@
+There are two types of kernels: A computer user never interacts directly with the kernel. It runs behind the scenes and cannot be seen, except for the text logs that it prints.

@@ -1,0 +1,1 @@
+These 64-bit PostgreSQL binaries are always free and Open Source. PG10+ is tested to run on OSX 10.11+, Windows 7, Windows 10 and Windows Server 2012.

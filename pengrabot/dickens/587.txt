@@ -1,0 +1,1 @@
+In this article, we will learn what React JS is and why we should use React JS instead of other JavaScript frameworks like Angular.

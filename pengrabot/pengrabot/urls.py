@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from search.views import HomePage, SearchAPI, search_redirect
+from search.views import HomePage, SearchAPI, search_redirect, QueryAPI
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomePage.as_view()),
     path('search/', SearchAPI.as_view()),
+    path('suggest/', QueryAPI.as_view()),
     path('go/<int:result_id>/', search_redirect)
 ]
 

@@ -1,0 +1,1 @@
+HTTP security headers provide yet another layer of security by helping to mitigate attacks andâ¦ There are a lot of things to consider to when securing your website or web application, but a goodâ¦ Try KeyCDN with a free 30 day trial, no credit card required.

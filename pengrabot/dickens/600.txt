@@ -1,0 +1,1 @@
+Frequently we want to know which words are the most common from a text corpus sinse we are looking for some patterns. Finally we sort a list of tuples that contain the word and their occurrence in the corpus. Now I want to get the top 20 common words: Seems to be that we found interesting things: Information System Engineering

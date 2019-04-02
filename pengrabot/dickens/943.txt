@@ -1,0 +1,1 @@
+Newton's method also may not converge for every function, take as an example:

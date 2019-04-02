@@ -1,0 +1,1 @@
+For problems 1 & 2 use Newton’s Method to determine \({x_{\,2}}\) for the given function and given value of \({x_0}\). For problems 3 & 4 use Newton’s Method to find the root of the given equation, accurate to six decimal places, that lies in the given interval. For problems 5 & 6 use Newton’s Method to find all the roots of the given equation accurate to six decimal places.

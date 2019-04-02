@@ -1,0 +1,1 @@
+Welcome to the website of the CS theory group at CU Boulder!  Our faculty and students research all aspects of theoretical computer science, from core areas such as algorithms, complexity, and cryptography, to connections with other fields such as machine learning, algebraic geometry, economics, dynamical systems, biology, and control theory. Department of Computer Science

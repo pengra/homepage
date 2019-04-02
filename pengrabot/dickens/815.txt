@@ -1,0 +1,1 @@
+Its syntax is as follows − Returns the reduced single value of the array. This method is a JavaScript extension to the ECMA-262 standard; as such it may not be present in other implementations of the standard. To make it work, you need to add the following code at the top of your script. Try the following example. © Copyright 2019. All Rights Reserved.

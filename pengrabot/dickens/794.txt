@@ -1,0 +1,1 @@
+Check this javascript method tester Javascript Functions use the .toLowerCase() function

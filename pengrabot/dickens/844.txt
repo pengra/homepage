@@ -1,0 +1,1 @@
+Note: some appliances auto direct http to https. Note: some appliances auto direct http to https. Special case for AWS marketplace: * Replace 12.34.56.789 with a valid IP or hostname.

@@ -1,0 +1,1 @@
+Debian based installs have a somewhat unique design that allows multiple database clusters to be managed independently.  This allows running both multiple database instances as well as multiple versions more easily than other packaging schemes. Note: if you do not wish, for example, PostgreSQL or Slony to start automatically when the software is upgraded, do the following:

@@ -1,5 +1,16 @@
 from rest_framework import serializers
-from search.models import Result
+from search.models import Result, Query
+
+class QuerySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Query
+        fields = (
+            'id',
+            'query',
+            'result_count'
+        )
+    
+    result_count = serializers.IntegerField(source='results_count')
 
 class ResultSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,4 +32,7 @@ class ResultSerializer(serializers.ModelSerializer):
             'image',
             'chan',
             'sx',
+            'queries',
         )
+
+    queries = serializers.StringRelatedField(source='filtered_queries', many=True)

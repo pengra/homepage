@@ -1,0 +1,1 @@
+Below is a list of JavaScript examples we've collected and created that can help demonstrate different abilities of JavaScript and include into your website.

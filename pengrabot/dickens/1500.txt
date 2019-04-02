@@ -1,0 +1,1 @@
+This is a simple online explaination of XSS attacks designed to  allow people to see in a hands on manner. It is interactive so that people can see the effects in real time,  and to be simpler to follow. This is intentionally a very simple set of "lessons", and I'm  glossing over a lot.      

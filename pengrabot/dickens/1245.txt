@@ -1,0 +1,1 @@
+Content provided by Microsoft Notice This article lists the download links for the latest versions of Microsoft Visual C++. Note This web installer requires an internet connection. This installer downloads and installs Visual Studio 2010 Service Pack 1. It works for all editions of Visual Studio 2010 (Express, Professional, Premium, Ultimate, and Test Professional).  

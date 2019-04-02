@@ -15,6 +15,19 @@ from datetime import datetime, timedelta
 class HomePage(TemplateView):
     template_name = "search/index.html"
 
+class QueryAPI(ListAPIView):
+    serializer_class = serializers.QuerySerializer
+
+    def get_queryset(self):
+        query = self.request.query_params.get('query', '').lower().strip()
+
+        suggestions = models.Query.objects.none()
+
+        if query:
+            suggestions |= models.Query.objects.filter(stopword=False, query__startswith=query)
+
+        return suggestions
+
 class SearchAPI(ListAPIView):
     serializer_class = serializers.ResultSerializer
 
@@ -34,32 +47,34 @@ class SearchAPI(ListAPIView):
 
         results = models.Result.objects.none()
 
+        thirty_mins = datetime.now() - timedelta(hours=0.5)
+
         if hn:
             query = None
-            if force or len(models.Result.objects.filter(hackernews=True, grabbed__gt=datetime.now() - timedelta(hours=0.5))) == 0:
+            if force or len(models.Result.objects.filter(hackernews=True, grabbed__gt=thirty_mins)) == 0:
                 call_command('hackernews')
             results |= models.Result.objects.filter(hackernews=True)
 
         elif wg:
             query = None
-            if force or len(models.Result.objects.filter(chan=True, grabbed__gt=datetime.now() - timedelta(hours=0.5))) == 0:
+            if force or len(models.Result.objects.filter(chan=True, grabbed__gt=thirty_mins)) == 0:
                 call_command('chan')
             results |= models.Result.objects.filter(chan=True)
 
         elif news and query:
             if force:
                 call_command('newsapi', query)
-                results |= models.Query.objects.get(query=query).results.filter(news=True, grabbed__gt=datetime.now() - timedelta(hours=0.5))
+                results |= models.Query.objects.get(query=query).results.filter(news=True, grabbed__gt=thirty_mins)
             else:
-                for suggested in models.Query.objects.filter(query__startswith=query):
-                    results |= suggested.results.filter(news=True, grabbed__gt=datetime.now() - timedelta(hours=0.5))
+                for suggested in models.Query.objects.filter(stopword=False, query__startswith=query):
+                    results |= suggested.results.filter(news=True, grabbed__gt=thirty_mins)
             
         elif is_scholarly and query:
             if force:
                 call_command('arxiv', query)
                 results |= models.Query.objects.get(query=query).results.all()
             else:
-                for suggested in models.Query.objects.filter(query__startswith=query):
+                for suggested in models.Query.objects.filter(stopword=False, query__startswith=query):
                     results |= suggested.results.all()
 
         elif is_academic and query:
@@ -67,7 +82,7 @@ class SearchAPI(ListAPIView):
                 call_command('wiki', query)
                 results |= models.Query.objects.get(query=query).results.all()
             else:
-                for suggested in models.Query.objects.filter(query__startswith=query):
+                for suggested in models.Query.objects.filter(stopword=False, query__startswith=query):
                     results |= suggested.results.all()
 
         elif query:
@@ -75,14 +90,19 @@ class SearchAPI(ListAPIView):
                 call_command('duckduckgo', query)
                 results |= models.Query.objects.get(query=query).results.all()
             else:
-                for suggested in models.Query.objects.filter(query__startswith=query):
-                    results |= suggested.results.all()
+                queries = models.Query.objects.filter(stopword=False, query=query)
+                if queries:
+                    results |= queries[0].results.all()
+                else:
+                    for suggested in models.Query.objects.filter(stopword=False, query__startswith=query):
+                        results |= suggested.results.all()
 
         order = ['-personal']
         generic = ['-clicks', 'grabbed']
 
-        if is_programming:
-            order.append('-sx')    
+        if is_programming or news:
+            order.append('-hackernews')
+            order.append('-sx')
         if is_scholarly:
             order.append('-arxiv')
             order.append('-edu')
@@ -92,10 +112,22 @@ class SearchAPI(ListAPIView):
             order.append('-arxiv')
         elif wg:
             generic.reverse()
+        elif hn:
+            generic = ['-grabbed']
         else:
             order.append('-duckduckgo')
 
-        return results.order_by(*order, *generic)
+        results = results.filter(blacklist=False).order_by(*order, *generic).distinct()
+
+        if force and results and not results[0].image:
+            try:
+                call_command('unsplash', results[0].id, query.split(' ')[0])
+            except Exception as e:
+                print(e)
+                pass # probably reached API limit or whatever
+            
+
+        return results
 
 
 def search_redirect(request, result_id):

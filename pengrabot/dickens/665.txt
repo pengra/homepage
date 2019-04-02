@@ -1,0 +1,1 @@
+An explanation of what is a finite state machine with two examples and the difference between Moore and Mealy machines.

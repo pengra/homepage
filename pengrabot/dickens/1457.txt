@@ -1,0 +1,1 @@
+Other forks, less known than XEmacs, include: Other projects aim to implement Emacs in a different dialect of Lisp or a different programming language altogether.  Although not all are still actively maintained, these clones include:

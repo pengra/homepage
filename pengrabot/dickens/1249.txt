@@ -1,0 +1,1 @@
+ Notes: The precedence table determines the order of binding in chained expressions, when it is not expressly specified by parentheses. while in C++ it is: Hence, the expression: is parsed differently in the two languages.  In C, this expression is a syntax error, because the syntax for an assignment expression in C is: In C++, it is parsed as: which is a valid expression. 

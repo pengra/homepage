@@ -1,0 +1,1 @@
+The web framework for perfectionists with deadlines. You’ve got three easy options to install Django: Always refer to the documentation that corresponds to the version of Django you’re using! You may have another version of Django installed.

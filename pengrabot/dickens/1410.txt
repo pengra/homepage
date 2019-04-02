@@ -1,0 +1,1 @@
+Theoretical Computer Science Theoretical computer science is the mathematical study of the capabilities and limitations of computing. The major research projects in the theoretical computer science group include the development and analysis of algorithms in a variety of models, parallel computing, computational complexity, and learning.

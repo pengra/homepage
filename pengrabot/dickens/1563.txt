@@ -1,0 +1,1 @@
+Common Vulnerabilities and Exposures Refresher: When to Use the CVE Request Web Form In this article, inspired by user questions, we will discuss when and how to use the CVE Request Web Form to best assist you.

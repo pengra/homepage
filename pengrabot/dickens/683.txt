@@ -1,0 +1,1 @@
+A "Hello, World!" program is traditionally used to introduce novice programmers to a programming language.

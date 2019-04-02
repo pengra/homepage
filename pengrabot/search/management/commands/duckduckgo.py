@@ -19,12 +19,12 @@ class Command(BaseCommand):
         queries = kwargs['query'].split('|')
         for query in queries:
             query = query.lower().strip()
+            words = [Query.objects.get_or_create(query=word)[0] for word in "".join([_ for _ in query if _.isalnum() or _.isspace()]).split(' ')]
             print("DuckDuckGo-ing", query)
             query, created = Query.objects.get_or_create(query=query)
-            self.search(query)
-            
+            self.search(query, words)
 
-    def search(self, query):
+    def search(self, query, subqueries):
         response = requests.get(self._endpoint + urllib.parse.quote(query.query), headers={'User-Agent':'Pengrabot'})
         soup = BeautifulSoup(response.text)
         results = soup.find('div', id='links').find_all('div', **{'class': 'result'})
@@ -68,6 +68,9 @@ class Command(BaseCommand):
                 'serverfault.com' in netloc
             )
             result.save()
+            for subquery in subqueries:
+                subquery.results.add(result)
+                subquery.save()
             query.results.add(result)
             query.save()
             print(title)
